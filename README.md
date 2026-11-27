@@ -1,7 +1,7 @@
 # A smooth inner-function quotient parametrizing any proper circular arc
 
 [![Repository verification](https://github.com/DannyExperiments/smooth-inner-quotient-circular-arc/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/DannyExperiments/smooth-inner-quotient-circular-arc/actions/workflows/verify.yml) · [![Replay verification](https://github.com/DannyExperiments/smooth-inner-quotient-circular-arc/actions/workflows/replay.yml/badge.svg?branch=main)](https://github.com/DannyExperiments/smooth-inner-quotient-circular-arc/actions/workflows/replay.yml) · [![PDF build](https://github.com/DannyExperiments/smooth-inner-quotient-circular-arc/actions/workflows/pdf.yml/badge.svg?branch=main)](https://github.com/DannyExperiments/smooth-inner-quotient-circular-arc/actions/workflows/pdf.yml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24588793.svg)](https://doi.org/10.5281/zenodo.24588793)
+[![DOI](visualization/version-doi.svg)](https://doi.org/10.5281/zenodo.24588793)
 
 Fricain, Grivaux and Ostermann’s Question 8.19 has an affirmative answer. The boundary quotient of two inner functions admits a smooth injective parametrization on the full closed angular interval, with nonvanishing derivative at both endpoints. Any nondegenerate proper closed arc can be obtained in either orientation.
 
