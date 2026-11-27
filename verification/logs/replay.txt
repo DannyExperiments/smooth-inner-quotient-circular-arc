@@ -1,0 +1,1 @@
+PASS: 121 exact Möbius fixtures, 129 positivity samples and 4 endpoint-slope samples.

@@ -1,0 +1,2 @@
+# 3D illustration\n\nThe cyan curve associates each angular input with its boundary quotient value. Its vertical coordinate encodes input θ. The base plane shows the target circle and its selected arc.\n\nOpen index.html locally. Drag, use the rotation buttons, or adjust the parameter. The GIF shows the default case. The 3D coordinates visualize the measured quantities stated in the view.\n
+Run python3 render.py with Pillow to regenerate the preview GIF.

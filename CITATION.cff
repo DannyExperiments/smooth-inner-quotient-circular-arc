@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Cite this version of the research release."
+type: software
+title: "A smooth inner-function quotient parametrizing any proper circular arc"
+authors:
+  - name: "DannyExperiments"
+version: "1.0.0"
+date-released: 2026-11-27
+doi: "10.5281/zenodo.24588793"
+url: "https://doi.org/10.5281/zenodo.24588793"
+repository-code: "https://github.com/DannyExperiments/smooth-inner-quotient-circular-arc"
+keywords:
+  - "inner functions"
+  - "Hardy space"
+  - "inner–outer factorization"
+  - "Toeplitz operators"
+  - "Cayley transform"
+  - "circular arcs"
+  - "entire functions"
+  - "Schwartz asymptotics"

@@ -1,0 +1,22 @@
+{
+  "title": "A smooth inner-function quotient parametrizing any proper circular arc",
+  "creators": [
+    {
+      "name": "DannyExperiments"
+    }
+  ],
+  "keywords": [
+    "inner functions",
+    "Hardy space",
+    "inner–outer factorization",
+    "Toeplitz operators",
+    "Cayley transform",
+    "circular arcs",
+    "entire functions",
+    "Schwartz asymptotics"
+  ],
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "version": "1.0.0",
+  "description": "Fricain, Grivaux and Ostermann’s Question 8.19 has an affirmative answer. The boundary quotient of two inner functions admits a smooth injective parametrization on the full closed angular interval, with nonvanishing derivative at both endpoints. Any nondegenerate proper closed arc can be obtained in either orientation.\n\nA smooth average of squared sinc kernels gives an increasing entire primitive on the real axis with a 1/x correction at each infinity. The Cayley transform turns this correction into a nonzero endpoint derivative. An exponential multiplier makes two factors bounded and their matching boundary moduli yield an exact inner quotient.\n\nDouglas–Rudin proved uniform approximation by quotients of inner functions. Here the quotient represents the prescribed boundary data exactly. The smooth density gives a rapidly decreasing remainder and controls all endpoint derivatives. Endpoint values are one-sided at the Cayley cut. The result establishes the quotient construction and does not determine the hypercyclicity of a Toeplitz operator.\n\nThe six separate files contain the PDF, TeX, bibliography, citation metadata, checksum ledger and complete versioned evidence archive. The replay checks the rational Möbius identities and samples the smooth positive kernel and predicted endpoint slope. The endpoint regularity and bounded-type representation follow from the analytic proof. The illustration shows the key parameter or winding geometry. The independent Codex director audit passed the analytic argument. No proof-assistant formalization or peer review is claimed.\n\nThe catalog discovery project credits ChatGPT Astra 6.2 (OpenAI). The packet has no per-run model receipt. OpenAI Codex independently audited mathematical scope and proof. GPT-6.2 Sol checked the primary literature and prepared the manuscript, replay and illustration. DannyExperiments is the project citation identity."
+}

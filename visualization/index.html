@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A smooth inner-function quotient parametrizing any proper circular arc</title><style>
+*{box-sizing:border-box}body{margin:0;background:#101c30;color:#e9f2fc;font:16px/1.5 system-ui,sans-serif}main{max-width:880px;margin:auto;padding:clamp(16px,4vw,42px)}h1{line-height:1.15;font-size:clamp(26px,5vw,43px);margin:0 0 12px}p{max-width:68ch;color:#becce0}canvas{display:block;width:100%;aspect-ratio:1.55;background:#162945;border:1px solid #385272;border-radius:12px;touch-action:none}label{display:block;margin-top:1rem}output{margin-left:.7rem;color:#f3bf78}.row{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}button{color:#e9f2fc;background:#263e60;border:1px solid #7191ad;border-radius:8px;padding:.55rem .8rem}input{accent-color:#76e4d5}small{color:#becce0}
+</style><main><h1 id="headline"></h1><p>The cyan curve associates each angular input with its boundary quotient value. Its vertical coordinate encodes input θ. The base plane shows the target circle and its selected arc.</p><canvas id="scene" aria-label="Perspective view of the mathematical construction"></canvas>
+<div class="row"><label><span id="slider-label"></span> <input id="parameter" type="range" min="5"><output id="value"></output></label></div>
+<p class="row"><button id="left" type="button">Rotate left</button><button id="right" type="button">Rotate right</button><button id="spin" type="button" aria-pressed="false">Play rotation</button></p><small id="axis"></small>
+</main><script>
+const cfg={min:1,max:359,start:180,title:'An arc with distinct endpoint values',label:'Arc length',axis:'height = input angle θ, from 0 to 2π'}
+const gs=[-1.0, -0.994443271, -0.988882729, -0.983273704, -0.97765804, -0.972369742, -0.966417257, -0.961165668, -0.952417402, -0.949840993, -0.947367608, -0.939627854, -0.928383375, -0.917561797, -0.909656034, -0.905164831, -0.903301129, -0.902781416, -0.902333814, -0.900934234, -0.897869284, -0.892712049, -0.885264861, -0.875497353, -0.863492155, -0.849401986, -0.833417969, -0.815747383, -0.796598786, -0.776172588, -0.754655497, -0.732217654, -0.709011543, -0.685172061, -0.660817284, -0.636049638, -0.61095726, -0.585615419, -0.560087922, -0.53442844, -0.508681737, -0.482884792, -0.457067801, -0.43125507, -0.405465809, -0.379714822, -0.354013113, -0.328368423, -0.302785687, -0.277267434, -0.251814142, -0.22642454, -0.201095872, -0.175824128, -0.150604252, -0.125430313, -0.100295673, -0.075193121, -0.050115008, -0.025053361, -0.0, 0.025053361, 0.050115008, 0.075193121, 0.100295673, 0.125430313, 0.150604252, 0.175824128, 0.201095872, 0.22642454, 0.251814142, 0.277267434, 0.302785687, 0.328368423, 0.354013113, 0.379714822, 0.405465809, 0.43125507, 0.457067801, 0.482884792, 0.508681737, 0.53442844, 0.560087922, 0.585615419, 0.61095726, 0.636049638, 0.660817284, 0.685172061, 0.709011543, 0.732217654, 0.754655497, 0.776172588, 0.796598786, 0.815747383, 0.833417969, 0.849401986, 0.863492155, 0.875497353, 0.885264861, 0.892712049, 0.897869284, 0.900934234, 0.902333814, 0.902781416, 0.903301129, 0.905164831, 0.909656034, 0.917561797, 0.928383375, 0.939627854, 0.947367608, 0.949840993, 0.952417402, 0.961165668, 0.966417257, 0.972369742, 0.97765804, 0.983273704, 0.988882729, 0.994443271, 1.0];
+const canvas=document.querySelector('#scene'),ctx=canvas.getContext('2d');
+const slider=document.querySelector('#parameter'),value=document.querySelector('#value');
+slider.min=cfg.min;slider.max=cfg.max;slider.value=cfg.start;
+document.querySelector('#headline').textContent=cfg.title;
+document.querySelector('#slider-label').textContent=cfg.label;
+document.querySelector('#axis').textContent=cfg.axis;
+let azimuth=.7, dragging=false, previous=0, loop=null;
+const project=([x,y,z])=>{
+  const xRot=Math.cos(azimuth)*x-Math.sin(azimuth)*y;
+  const depth=Math.sin(azimuth)*x+Math.cos(azimuth)*y;
+  const lens=1/(1+depth*.15);
+  const scale=canvas.height*.245*lens;
+  return [canvas.width/2+scale*xRot,canvas.height/2-scale*(.87*z+.48*depth)];
+};
+function line(points,color,width){ctx.strokeStyle=color;ctx.lineWidth=width*devicePixelRatio;ctx.lineJoin='round';ctx.beginPath();points.forEach((point,k)=>{const [x,y]=project(point);if(k)ctx.lineTo(x,y);else ctx.moveTo(x,y);});ctx.stroke();}
+function dot(point,color){const [x,y]=project(point);ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,5*devicePixelRatio,0,2*Math.PI);ctx.fill();}
+function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);const radians=Number(slider.value)*Math.PI/180;const lambdaA=Math.tan(radians/4);
+const point=(angle,height)=>[Math.cos(angle),Math.sin(angle),height];
+const inputHeight=angle=>{
+  const g=Math.tan((angle-Math.PI)/2)/lambdaA;
+  if(g<=gs[0])return -1.04;
+  if(g>=gs.at(-1))return 1.04;
+  let lo=0,hi=gs.length-1;
+  while(hi-lo>1){const mid=(lo+hi)>>1;if(gs[mid]<g)lo=mid;else hi=mid;}
+  const fraction=(g-gs[lo])/(gs[hi]-gs[lo]);
+  return -1.04+2.08*(lo+fraction)/(gs.length-1);
+};
+const angles=Array.from({length:361},(_,k)=>Math.PI-radians/2+radians*k/360);
+const circle=Array.from({length:121},(_,k)=>[Math.cos(2*Math.PI*k/120),Math.sin(2*Math.PI*k/120),-1.2]);
+const graph=angles.map(angle=>point(angle,inputHeight(angle)));
+const arc=angles.map(angle=>point(angle,-1.2));
+line(circle,'#7792af',2);line(arc,'#f3bf78',4);
+line([arc[0],graph[0]],'#f3bf78',2);line([arc.at(-1),graph.at(-1)],'#f3bf78',2);
+line(graph,'#76e4d5',4);dot(graph[0],'#f3bf78');dot(graph.at(-1),'#f3bf78');
+value.value=slider.value+'° · distinct one-sided endpoints';}
+function resize(){const size=canvas.getBoundingClientRect();canvas.width=Math.round(size.width*devicePixelRatio);canvas.height=Math.round(size.height*devicePixelRatio);draw();}
+new ResizeObserver(resize).observe(canvas);
+slider.addEventListener('input',draw);
+document.querySelector('#left').onclick=()=>{azimuth-=.28;draw();};
+document.querySelector('#right').onclick=()=>{azimuth+=.28;draw();};
+document.querySelector('#spin').onclick=(event)=>{const button=event.currentTarget;if(loop){clearInterval(loop);loop=null;}else{loop=setInterval(()=>{azimuth+=.025;draw();},34);}button.textContent=loop?'Pause rotation':'Play rotation';button.setAttribute('aria-pressed',String(Boolean(loop)));};
+canvas.addEventListener('pointerdown',event=>{dragging=true;previous=event.clientX;canvas.setPointerCapture(event.pointerId);});
+canvas.addEventListener('pointermove',event=>{if(dragging){azimuth+=(event.clientX-previous)*.013;previous=event.clientX;draw();}});
+for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,()=>{dragging=false;});
+resize();
+</script></html>

@@ -1,0 +1,68 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.08in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\setlength{\emergencystretch}{2em}
+\DeclareMathSizes{8}{8}{8}{8}
+\DeclareMathSizes{9}{9}{8}{8}
+\DeclareMathSizes{10.95}{10.95}{8}{8}
+\DeclareFontFamily{OMX}{cmex}{}
+\DeclareFontShape{OMX}{cmex}{m}{n}{<-> cmex10}{}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\title[Smooth inner quotients for circular arcs]{A smooth inner-function quotient parametrizing any proper circular arc}
+\date{}
+\begin{document}
+\begin{abstract}
+Every nondegenerate proper closed arc of the unit circle admits, in either orientation, a smooth regular parametrization on the closed angular interval that agrees almost everywhere with the boundary quotient of two inner functions. This answers Question 8.19 of Fricain, Grivaux and Ostermann affirmatively.
+\end{abstract}
+\maketitle
+
+\section{Statement}
+Question 8.19 of Fricain, Grivaux and Ostermann \cite{fgo} asks whether two inner functions \(u,v\) on the disk can have a boundary quotient represented on \(0<\theta<2\pi\) by an injective \(C^{1+\varepsilon}\) map \(\xi:[0,2\pi]\to\mathbb T\) with nonzero derivative on the entire closed interval.
+
+\begin{theorem}
+For every nondegenerate proper closed arc \(J\subset\mathbb T\), with either orientation, there are inner \(u,v\) on the unit disk and an injective \(C^\infty\) parametrization \(\xi:[0,2\pi]\to J\) in the specified orientation, with \(\xi'\ne0\) everywhere, such that \(\xi(\theta)=u(e^{i\theta})/v(e^{i\theta})\) for almost every \(\theta\in(0,2\pi)\).
+\end{theorem}
+
+\section{A positive kernel and its primitive}
+Take a nonnegative smooth density \(\rho\) compactly supported in \((1,2)\) with integral one. Define the entire functions
+\[
+ h(w)=\int_1^2\rho(t)\left(\frac{\sin(tw)}{w}\right)^2dt,\qquad
+ g(w)=\int_0^w h(\zeta)\,d\zeta .
+\]
+The integrand has a removable value at zero and is locally uniformly bounded in \(w\) as \(t\) varies. Hence \(h\) is entire and admits the normalized primitive \(g\). For real \(x\ne0\), the zeros of \(\sin(tx)\) are discrete in \(t\), so \(h(x)>0\). At zero the squared factor is \(t^2\). The function \(h\) is even and \(h(x)=O(x^{-2})\) on the real axis. Consequently \(A=\int_0^\infty h(x)\,dx\) is positive and finite and the real \(g\) increases from \(-A\) to \(A\).
+
+For \(|x|\ge1\), write
+\[
+ h(x)=\frac1{2x^2}+r(x),\qquad
+ r(x)=-\frac1{2x^2}\int_1^2\rho(t)\cos(2tx)\,dt.
+\]
+All derivatives of the Fourier integral decay faster than every inverse power of \(|x|\). Differentiation introduces powers of \(t\), and repeated integration by parts has zero boundary terms since \(\rho\) is compactly supported. This also holds for all derivatives of \(r\). Integration at each end yields
+\begin{equation}\label{eq:tail}
+ g(x)=\operatorname{sgn}(x)A-\frac1{2x}+R(x),
+\end{equation}
+where \(R\) has the same rapid decay with all derivatives. Indeed its derivative on each tail is \(r\), and its value is the corresponding tail integral of \(r\).
+
+\section{The Cayley cut and boundary derivatives}
+Let \(w(z)=i(1+z)/(1-z)\), mapping the disk onto the upper half-plane. For \(0<\theta<2\pi\) its boundary value is \(x(\theta)=-\cot(\theta/2)\), which increases strictly from \(-\infty\) to \(+\infty\). Set \(s(\theta)=g(x(\theta))\). By \eqref{eq:tail}, near either endpoint the nonconstant leading term is \(\tfrac12\tan(\theta/2)\). It is smooth there with derivative \(1/4\). Each derivative of \(x(\theta)\) is bounded by a power of the reciprocal of the distance to the endpoint. Since \(|x(\theta)|\) is comparable to that reciprocal, the chain rule and rapid decay imply that every derivative of \(R(x(\theta))\) tends to zero. Its extension by zero across either endpoint is smooth by repeated differentiation. Thus \(s\) extends smoothly with \(s(0)=-A\), \(s(2\pi)=A\) and \(s'(0)=s'(2\pi)=1/4\). In the interior \(s'(\theta)=h(x(\theta))x'(\theta)>0\).
+
+\section{Exact representation and orientation}
+If \(y=\operatorname{Im}w\ge0\) and \(|w|\ge1\), the estimate \(|\sin(tw)|\le e^{ty}\) gives \(|h(w)|\le e^{4y}\). On the compact upper half-disk with \(|w|\le1\), increase the constant to obtain \(|h(w)|\le C e^{4y}\) throughout the upper half-plane. Integrate along the vertical segment from \(x\) to \(x+iy\); since \(|g(x)|\le A\), this yields \(|g(x+iy)|\le C'e^{4y}\). For any fixed \(\lambda>0\),
+\[
+ F_\pm(z)=e^{4iw(z)}\bigl(\lambda g(w(z))\pm i\bigr)
+\]
+are bounded nonzero analytic functions on the disk. Their radial boundary moduli agree almost everywhere, since \(g(x(\theta))\) is real. Canonical inner--outer factorization \cite{duren} then gives \(F_-=uO\) and \(F_+=vO\) for a common normalized outer factor \(O\) and inner \(u,v\). The boundary values of \(O\) are nonzero almost everywhere. The exponential multiplier cancels, yielding the desired boundary quotient
+\[
+ \xi(\theta)=\frac{\lambda s(\theta)-i}{\lambda s(\theta)+i}.
+\]
+The real M\"obius map \(t\mapsto(t-i)/(t+i)\) has a continuous argument \(\pi+2\arctan t\) on \(\mathbb R\). This argument is strictly increasing with derivative \(2/(1+t^2)\); thus \(\xi\) is injective and regular on the closed interval. Its image length is \(4\arctan(\lambda A)\), which ranges over \((0,2\pi)\) as \(\lambda\) ranges over \((0,\infty)\). Rotate by a unimodular constant to place the arc. Interchange \(u,v\) to reverse orientation and then rotate to the target arc. The distinct endpoints represent one-sided values at the Cayley cut.
+
+As a worked example, choose \(\lambda=A^{-1}\). The positive orientation starts at \(i\), goes through \(-1\) at \(\theta=\pi\), and ends at \(-i\), tracing the left semicircle. Both endpoint angular speeds have magnitude \(1/(4A)\).
+
+\section{Prior work and scope}
+Douglas--Rudin \cite{douglas} proved uniform approximation of unimodular boundary data by inner quotients. The construction here gives exact membership and controls the derivative at the Cayley cut. The proof establishes existence of the quotient in Question 8.19; it does not decide the associated Toeplitz hypercyclicity questions. The literature scan is bounded and the analytic argument has not been formally verified or peer reviewed.
+
+\bibliographystyle{amsplain}
+\bibliography{references}
+\end{document}
