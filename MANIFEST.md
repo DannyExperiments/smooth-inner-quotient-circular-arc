@@ -6,3 +6,4 @@
 - verification/ contains the replay and result.
 - visualization/ contains the offline projection and rotating preview.
 - SHA256SUMS.txt records the released files.
+- formal/closing/ contains the pinned Lean source, scope and verifier.
